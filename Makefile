@@ -4,6 +4,8 @@ NODE = node
 build:
 	@echo "Building..."
 	@node-gyp clean && node-gyp configure && node-gyp build
+	@echo "Copy relase file ntpl.native.node to lib"
+	@cp build/Release/ntpl.native.node lib/nTPL/ntpl.native.node
 
 install:
 	@echo "Installing..."
@@ -23,7 +25,9 @@ test:
 
 clean:
 	@echo "Cleaning directory"
-	@rm -rf build/
+	@node-gyp clean
+	@echo "Remove ntpl.native.node from lib"
+	@rm lib/nTPL/ntpl.native.node
 	
 all : uninstall clean build install
 

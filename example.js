@@ -12,13 +12,14 @@ var home = ntpl({
 	
 var http = require('http');
 
-http.createServer(function (req, res) {
+var server = http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(home({
       username: "Paul",
       userfax: "12345678",
       usermail: "a@a.com"
     })); 
-}).listen(80, "127.0.0.1");
-
-console.log('Server running at http://127.0.0.1:80/');
+}).listen(8000, "127.0.0.1", function() {
+	var addr = server.address();
+	console.log('Server running at http://' + addr.address + ':' + addr.port);
+});

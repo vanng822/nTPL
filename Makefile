@@ -3,8 +3,7 @@ NODE = node
 
 build:
 	@echo "Building..."
-	@rm -rf build/ && node-waf configure && node-waf clean && node-waf build
-	@rm .lock-wscript
+	@node-gyp clean && node-gyp configure && node-gyp build
 
 install:
 	@echo "Installing..."
